@@ -20,9 +20,14 @@ public class EcomApplication implements CommandLineRunner{
 		String sql = "INSERT INTO student (name, email) VALUES ("
 				+ "'Nam Ha Minh', 'nam@codejava.net')";
 
+
 		int rows = jdbcTemplate.update(sql);
 		if (rows > 0) {
 			System.out.println("A new row has been inserted.");
+		}
+		int delete_rows = jdbcTemplate.update("delete from student");
+		if (delete_rows == 1) {
+			System.out.println("All rows has been deleted");
 		}
 	}
 
