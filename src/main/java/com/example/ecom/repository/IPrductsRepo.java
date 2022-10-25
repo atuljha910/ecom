@@ -1,11 +1,7 @@
 package com.example.ecom.repository;
 import com.example.ecom.models.Products;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.*;
+public interface IPrductsRepo extends JpaRepository<Products, Integer> {
 
-public interface IPrductsRepo {
-    List<Products> get();
-    Products get(int id);
-    void save(Products product);
-    void delete(int id);
 }
