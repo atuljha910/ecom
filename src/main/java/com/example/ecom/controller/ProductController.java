@@ -3,11 +3,11 @@ package com.example.ecom.controller;
 import com.example.ecom.models.Products;
 import com.example.ecom.repository.IPrductsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -20,14 +20,27 @@ public class ProductController {
         List<Products> allProducts = prductsRepo.findAll();
         return allProducts;
     }
-
+    @GetMapping(value = "/products/{id}")
+    public Optional<Products> getProductDetails(@PathVariable Integer id)
+    {
+        Optional<Products> p = prductsRepo.findById(id);
+        return p;
+    }
     @GetMapping(value = "")
     public String showHealth()
     {
         return "good";
     }
     @PostMapping(value = "/products")
-    public void createProduct(Products p) {
+    public void createProduct(@RequestBody Products p) {
         prductsRepo.save(p);
+    }
+
+    @DeleteMapping(value = "/products/{id}")
+    public void deleteProduct(@PathVariable Integer id)
+    {
+        List<Integer> l = new ArrayList<Integer>();
+        l.add(id);
+        prductsRepo.deleteAllById(l);
     }
 }
