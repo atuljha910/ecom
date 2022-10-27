@@ -14,6 +14,15 @@ public class Products {
     @Column
     private String genre;
 
+    @Column
+    private String piclink;
+    public String getPiclink() {
+        return piclink;
+    }
+
+    public void setPiclink(String piclink) {
+        this.piclink = piclink;
+    }
     public String getGenre() {
         return genre;
     }
